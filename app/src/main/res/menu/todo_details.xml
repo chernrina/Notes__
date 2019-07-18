@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.notes__.view.Details">
+    <item android:title="@string/priority"
+        app:showAsAction="always|withText"
+        android:icon="@drawable/ic_sort">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/ordinary"
+                    android:checked="true"
+                    android:title="@string/ordinary_note"
+                    android:titleCondensed="0"/>
+                <item
+                    android:id="@+id/important"
+                    android:title="@string/important_note"
+                    android:titleCondensed="1"/>
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/delete"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_delete"
+        android:title="@string/delete" />
+    <item
+        android:id="@+id/save"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save" />
+</menu>

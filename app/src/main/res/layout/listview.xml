@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/listview_selector">
+
+    <ImageView
+        android:id="@+id/image_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_arrow" />
+
+    <TextView
+        android:id="@+id/todoDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/todoName"
+        android:layout_alignLeft="@id/todoName"
+        android:paddingTop="2dp"
+        android:text="todo_date"
+        android:textColor="#343434"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/todoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/layout_image"
+        android:gravity="center_vertical"
+        android:paddingBottom="2dp"
+        android:text="@string/new_document"
+        android:textColor="@color/text"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:typeface="sans" />
+
+    <LinearLayout
+        android:id="@+id/layout_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical"
+        android:padding="3dp">
+
+        <ImageView
+            android:id="@+id/imageTask"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignTop="@+id/layout_image"
+            android:layout_alignBottom="@+id/layout_image"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/ic_check"
+            tools:ignore="VectorDrawableCompat" />
+    </LinearLayout>
+</RelativeLayout>

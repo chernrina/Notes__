@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">NOTES</string>
+    <string name="title_activity_todo_list">TodoList</string>
+    <string name="title_activity_todo_details">TodoDetails</string>
+    <string name="add_task">+</string>
+    <string name="back">назад</string>
+    <string name="save">Сохранить</string>
+    <string name="new_document">Новая заметка</string>
+    <string name="create">Создать</string>
+    <string name="delete">Удалить</string>
+    <string name="cancel">Отмена</string>
+    <string name="confirm_delete">Удалить заметку?</string>
+    <string name="empty_view">Нет заметок</string>
+    <string name="delete_all">Удалить все</string>
+    <string name="search">Поиск</string>
+    <string name="sort">Сортировать</string>
+    <string name="sort_date">По дате</string>
+    <string name="sort_name">По названию</string>
+    <string name="priority">Приоритет</string>
+    <string name="ordinary_note">Обычная</string>
+    <string name="important_note">Важная</string>
+    <string name="sort_priority">По приоритету</string>
+</resources>

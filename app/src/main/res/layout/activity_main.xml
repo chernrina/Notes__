@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MainActivity">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frame_search"
+        android:layout_marginTop="3dp"
+        android:padding="2dp">
+
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="10dp"
+            android:textCursorDrawable="@null"
+            android:gravity="top|left"
+            android:hint="@string/search"
+            android:singleLine="true"
+            android:background="@drawable/search_edit"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/ic_search"/>
+
+        <Button
+            android:id="@+id/clear_search"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/ic_clear"
+            android:layout_gravity="right|center_vertical"
+            android:onClick="searchClear" />
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/listTasks"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:paddingTop="100dp"
+            android:text="@string/empty_view"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
