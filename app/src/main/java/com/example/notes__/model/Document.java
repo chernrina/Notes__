@@ -9,14 +9,7 @@ public class Document {
     private Date createDate;
     private Integer number;
     private PriorityType priorityType = PriorityType.ORDINARY;
-
-    public Document(String name, String content, Date createDate, PriorityType priorityType) {
-        super();
-        this.name = name;
-        this.content = content;
-        this.createDate = createDate;
-        this.priorityType =priorityType;
-    }
+    private boolean checkBox = false;
 
     public Document() {
     }
@@ -64,7 +57,9 @@ public class Document {
 
     public boolean equals(Object o) {
         if (o instanceof Document) {
-            if (this.content == ((Document) o).getContent()) return true;
+            if (this.createDate.getTime() == ((Document) o).getCreateDate().getTime()) {
+                return true;
+            }
         }
         return false;
     }
@@ -72,4 +67,10 @@ public class Document {
     public void setPriorityType(PriorityType priorityType) {
         this.priorityType = priorityType;
     }
+
+    public boolean getCheckBox() {
+        return checkBox;
+    }
+
+    public void setCheckBox(boolean check) {this.checkBox = check;}
 }

@@ -2,8 +2,9 @@ package com.example.notes__.model;
 
 public enum PriorityType {
 
-    ORDINARY(0),
-    IMPORTANT(1);
+    CHECK(0),
+    ORDINARY(1),
+    IMPORTANT(2);
 
     private int index;
 

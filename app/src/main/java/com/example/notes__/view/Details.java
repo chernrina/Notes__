@@ -25,7 +25,7 @@ public class Details extends AppCompatActivity {
 
     private static final String LOG_TAG = "Details";
 
-    private static final int NAME_LENGTH = 20;
+    private static final int NAME_LENGTH = 15;
     private EditText todoDetails;
     private Document doc;
 
@@ -102,11 +102,12 @@ public class Details extends AppCompatActivity {
                 dialog.show();
                 return true;
             }
-            case R.id.important:
+            case R.id.important: {
+                currentPriorityType = PriorityType.IMPORTANT;
+                return true;
+            }
             case R.id.ordinary: {
-                item.setChecked(true);
-                currentPriorityType = PriorityType.values()
-                        [Integer.valueOf(item.getTitleCondensed().toString())];
+                currentPriorityType = PriorityType.ORDINARY;
                 return true;
             }
             default:
@@ -121,9 +122,9 @@ public class Details extends AppCompatActivity {
             SharedPreferences sharedPref = getSharedPreferences(String.valueOf(
                     doc.getCreateDate().getTime()), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            if (!todoDetails.getText().toString().trim().equals(doc.getContent())) {
+            if (!todoDetails.getText().toString().equals(doc.getContent())) {
                 doc.setName(getDocumentName());
-                doc.setContent(todoDetails.getText().toString().trim());
+                doc.setContent(todoDetails.getText().toString());
                 editor.putString(AppContext.FIELD_CONTENT, doc.getContent());
                 edited = true;
             }
@@ -143,7 +144,7 @@ public class Details extends AppCompatActivity {
             }
         } else if (actionType == AppContext.ACTION_NEW_TASK) {
             doc.setName(getDocumentName());
-            doc.setContent(todoDetails.getText().toString().trim());
+            doc.setContent(todoDetails.getText().toString());
             doc.setPriorityType(currentPriorityType);
             doc.setCreateDate(new Date());
             SharedPreferences sharedPref = getSharedPreferences(String.valueOf(
@@ -153,6 +154,7 @@ public class Details extends AppCompatActivity {
             editor.putString(AppContext.FIELD_NAME, doc.getName());
             editor.putLong(AppContext.FIELD_CREATE_DATE, doc.getCreateDate().getTime());
             editor.putInt(AppContext.FIELD_PRIORITY_TYPE, doc.getPriorityType().getIndex());
+            editor.putBoolean(AppContext.FIELD_CHECK, doc.getCheckBox());
             editor.commit();
             listDocument.add(doc);
         }
@@ -161,12 +163,12 @@ public class Details extends AppCompatActivity {
 
     private String getDocumentName() {
         StringBuilder str = new StringBuilder(todoDetails.getText());
-        if (str.length() > NAME_LENGTH) {
-            str.delete(NAME_LENGTH, str.length()).append("...");
+        String tmpName = str.toString().split("\n")[0];
+        if (tmpName.equals(str.toString())) {
+            if (str.length() > NAME_LENGTH) str.delete(NAME_LENGTH, str.length()).append("...");
+            return (str.length() > 0) ? str.toString() : getResources().getString(R.string.new_document) ;
         }
-        String tmpName = str.toString().trim().split("\n")[0];
-        String name = (tmpName.length() > 0) ? tmpName : getResources().getString(R.string.new_document);
-        return name;
+        else return tmpName + "\n...";
     }
 
     private void deleteDocument() {
@@ -185,7 +187,5 @@ public class Details extends AppCompatActivity {
         String filePath = ((AppContext) getApplicationContext()).getPrefsDir()
                 + "/" + doc.getCreateDate().getTime() + ".xml";
         return new File(filePath);
-
     }
-
 }

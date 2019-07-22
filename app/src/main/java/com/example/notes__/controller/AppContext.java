@@ -17,6 +17,7 @@ public class AppContext extends Application {
     public static final String FIELD_NAME = "name";
     public static final String FIELD_CREATE_DATE = "createDate";
     public static final String FIELD_PRIORITY_TYPE = "priorityType";
+    public static final String FIELD_CHECK = "checkBox";
 
     private ArrayList<Document> listDocument = new ArrayList<>();
 

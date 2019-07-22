@@ -1,11 +1,13 @@
 package com.example.notes__.controller;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,8 +18,11 @@ import java.util.ArrayList;
 
 public class Adapter extends ArrayAdapter<Document> {
 
-    public Adapter(Context context, ArrayList<Document> list) {
+    private View.OnClickListener checkBoxListener;
+
+    public Adapter(Context context, ArrayList<Document> list, View.OnClickListener checkBoxListener) {
         super(context, R.layout.listview, list);
+        this.checkBoxListener = checkBoxListener;
     }
 
     /**
@@ -37,22 +42,34 @@ public class Adapter extends ArrayAdapter<Document> {
             viewHolder.todoName = convertView.findViewById(R.id.todoName);
             viewHolder.todoDate = convertView.findViewById(R.id.todoDate);
             viewHolder.imagePriority = convertView.findViewById(R.id.imageTask);
+            viewHolder.checkBox = convertView.findViewById(R.id.checkBox);
+            viewHolder.checkBox.setOnClickListener(checkBoxListener);
             convertView.setTag(viewHolder);
         }
         ViewHolder holder = (ViewHolder) convertView.getTag();
         Document doc = getItem(position);
         holder.todoName.setText(doc.getName());
         holder.todoDate.setText(DateFormat.format("dd MMMM yyyy, kk:mm", doc.getCreateDate()));
-        switch (doc.getPriorityType()) {
-            case ORDINARY:{
-                holder.imagePriority.setImageResource(R.drawable.ic_ordinary_note);
-                break;
+        holder.checkBox.setChecked(doc.getCheckBox());
+        holder.checkBox.setTag(doc);
+        if (holder.checkBox.isChecked()) {
+            holder.todoName.setTextColor(Color.GRAY);
+            holder.todoDate.setTextColor(Color.GRAY);
+            holder.imagePriority.setImageResource(R.drawable.ic_checked);
+        } else {
+            holder.todoName.setTextColor(Color.BLACK);
+            holder.todoDate.setTextColor(Color.BLACK);
+            switch (doc.getPriorityType()) {
+                case ORDINARY:{
+                    holder.imagePriority.setImageResource(R.drawable.ic_ordinary_note);
+                    break;
+                }
+                case IMPORTANT: {
+                    holder.imagePriority.setImageResource(R.drawable.ic_important_note);
+                    break;
+                }
+                default:break;
             }
-            case IMPORTANT: {
-                holder.imagePriority.setImageResource(R.drawable.ic_important_note);
-                break;
-            }
-            default:break;
         }
         return convertView;
     }
@@ -61,6 +78,7 @@ public class Adapter extends ArrayAdapter<Document> {
         private TextView todoName;
         private TextView todoDate;
         private ImageView imagePriority;
+        private CheckBox checkBox;
     }
 
 }
